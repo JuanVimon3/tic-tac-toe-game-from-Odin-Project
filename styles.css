@@ -1,0 +1,11 @@
+
+.cellsContainer{
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  height: max-content;
+  gap: 8px;
+  border-color: black;
+  text-align: center;
+  justify-content: center;
+}
