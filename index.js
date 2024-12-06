@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', function(){
   const cells = document.querySelectorAll('.cellsContainer div')
-  let currentPLayer = 'X'
+  let currentPlayer = 'X'
 
-  cells.forEach((cell, index) => {
+  cells.forEach((cell) => {
     cell.addEventListener('click', function (){
-      if(cell.texContent === ''){
-        cell.texContent = currentPLayer;
+      if(cell.textContent === ''){
+        cell.textContent = currentPlayer;
         chekWinner();
-        currentPLayer = currentPLayer === 'X' ? 'O' : 'X'
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X'
       }
     })
   });
@@ -26,14 +26,19 @@ document.addEventListener('DOMContentLoaded', function(){
 
     for (let possitions of winnerPositions) {
       const [a, b ,c] = possitions;
-      if(cells[a].textContent === currentPLayer &&
-        cells[b].textContent === currentPLayer &&
-        cells[c].textContent === currentPLayer
+      if(
+        cells[a].textContent === currentPlayer &&
+        cells[b].textContent === currentPlayer &&
+        cells[c].textContent === currentPlayer
       ){
-        alert(`Player ${currentPLayer} wins`)
+        alert(`Player ${currentPlayer} wins`)
         resetGame();
-        break
+        return;
       }
+    }
+    if([...cells].every(cell => cell.textContent !== '')){
+      alert('It\'s a draw');
+      resetGame()
     }
   }
 
@@ -41,14 +46,4 @@ document.addEventListener('DOMContentLoaded', function(){
     cells.forEach(cell => (cell.textContent = ''));
     currentPLayer = 'X'
   }
-  // function playGame (){
-  //   const winnerPossition = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8],[0,4,8],[2,4,6]];
-    
-  //   const inputName = (name) => {
-  //     name = alert(prompt('Please input your name'))
-  //   }
-  //   const inputSymbol = (x, o) => {
-
-  //   } 
-  // }
 })
